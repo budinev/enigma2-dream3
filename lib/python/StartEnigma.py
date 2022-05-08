@@ -13,16 +13,24 @@ import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
+from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, ConfigSubsection, NoSave
 
 from traceback import print_exc
 
+# config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar.
+config.plugins = ConfigSubsection()
+config.plugins.remotecontroltype = ConfigSubsection()
+config.plugins.remotecontroltype.rctype = ConfigInteger(default=0)
+
 # New Plugin Style
-config.misc.plugin_style = ConfigSelection(default='normallstyle', choices=[
-	('normallstyle', _('Normall Style')),
-	('newstyle1', _('New Style 1')),
-	('newstyle2', _('New Style 2')),
-	('newstyle3', _('New Style 3'))])
+config.misc.plugin_style = ConfigSelection(default="normallstyle", choices=[
+	("normallstyle", _("Normall Style")),
+	("newstyle1", _("New Style 1")),
+	("newstyle2", _("New Style 2")),
+	("newstyle3", _("New Style 3")),
+	("newstyle4", _("New Style 4")),
+	("newstyle5", _("New Style 5")),
+	("newstyle6", _("New Style 6"))])
 
 profile("SimpleSummary")
 from Screens import InfoBar
